@@ -1,11 +1,11 @@
 ---
 name: loop-designer
-description: Use when the user wants to stop one-shot prompting and design repeatable loops that prompt coding agents through iterations, verification, reflection, and stop conditions.
+description: Use when the user wants to stop one-shot prompting and design repeatable or automated loops that prompt coding agents through iterations, verification, reflection, checkpointing, and stop conditions.
 ---
 
 # Loop Designer
 
-Use this skill when the user asks for an agent loop, durable prompt system, iteration plan, autonomous coding workflow, or anything close to: "design loops that prompt agents."
+Use this skill when the user asks for an agent loop, durable prompt system, iteration plan, autonomous coding workflow, Ralph-like loop, or anything close to: "design loops that prompt agents."
 
 ## Core move
 
@@ -27,9 +27,24 @@ A strong loop has:
 - Prefer measurable acceptance criteria over vague success language.
 - Include guardrails for destructive commands, secrets, production access, and runaway loops.
 - If `loop_designer` is available, save the blueprint with action `save`.
-- If work is already inside a loop, checkpoint progress with action `checkpoint`.
+- If the user asks to start automatically, use `autoStart: true` and a safe `maxIterations` value.
+- For automated loops, every iteration must end with `loop_designer` action `checkpoint`.
+- Checkpoint statuses:
+  - `done`: acceptance criteria met; stop.
+  - `continue`: more low-risk work remains; include `continueLoop: true` and a concrete `nextAgentPrompt`.
+  - `blocked`: user input, credentials, risky decision, or approval needed; stop.
+  - `paused`: stop without marking complete.
+- If work is already inside a loop, checkpoint progress instead of starting a new loop.
 - For implementation loops, require verification after each iteration.
 - For design loops, require critique/refine passes and final artifact review.
+
+## Commands
+
+- `/loop <objective>` designs and saves a loop.
+- `/loop-run [--max N] <objective>` designs, saves, and auto-starts bounded iterations.
+- `/loop-start [id] [--max N]` starts a saved loop.
+- `/loop-stop` pauses a running loop.
+- `loop!:` and `#loop!` are fast auto-run prefixes.
 
 ## Output shape
 

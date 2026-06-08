@@ -1,6 +1,6 @@
 {
   "name": "pi-loop-designer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pi extension for designing loops that prompt coding agents.",
   "keywords": [
     "agent-loops",
@@ -17,6 +17,7 @@
     "extensions",
     "prompts",
     "skills",
+    "scripts",
     "README.md"
   ],
   "type": "module",
@@ -26,7 +27,8 @@
   "scripts": {
     "typecheck": "tsgo --noEmit",
     "lint": "oxlint .",
-    "format": "oxfmt ."
+    "format": "oxfmt .",
+    "smoke": "node --experimental-strip-types scripts/smoke-test.mjs"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "^0.78.1",
