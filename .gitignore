@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Keep REDDIT_POST.md unignored on purpose; user wants it local-only, not hidden.
