@@ -7,6 +7,12 @@ Pi extension for turning raw coding goal into repeatable agent loop. One command
 ## Install
 
 ```bash
+pi install npm:pi-loop-designer
+```
+
+Git fallback:
+
+```bash
 pi install git:github.com/byigitt/pi-loop-designer
 ```
 

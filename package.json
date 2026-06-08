@@ -13,7 +13,16 @@
     "type": "git",
     "url": "git+https://github.com/byigitt/pi-loop-designer.git"
   },
+  "files": [
+    "extensions",
+    "prompts",
+    "skills",
+    "README.md"
+  ],
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "typecheck": "tsgo --noEmit",
     "lint": "oxlint .",
